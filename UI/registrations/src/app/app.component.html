@@ -1,0 +1,51 @@
+<div class="container">
+  <h1>Registration</h1>
+  <div class="registration-container">
+    <div class="registration-form">
+    <form #form="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="">First Name</label>
+        <input type="text" name="firstName" [(ngModel)]="registration.firstName">
+      </div>
+      <div class="form-group">
+        <label for="">Last Name</label>
+        <input type="text" name="lastName" [(ngModel)]="registration.lastName">
+      </div>
+      <div class="form-group">
+        <label for="">NPI Number</label>
+        <input type="text" name="npiNumber" [(ngModel)]="registration.npiNumber">
+      </div>
+      <div class="form-group">
+        <label for="">Business Address</label>
+        <input type="text" name="businessAddress" [(ngModel)]="registration.businessAddress">
+      </div>
+      <div class="form-group">
+        <label for="">Telephone Number</label>
+        <input type="text" name="telephoneNumber" [(ngModel)]="registration.telephoneNumber">
+      </div>
+      <div class="form-group">
+        <label for="">Email</label>
+        <input type="text" name="email" [(ngModel)]="registration.email">
+      </div>
+      <div class="form-group">
+        <button [disabled]="!registration.firstName || !registration.lastName || !registration.npiNumber || !registration.businessAddress || !registration.telephoneNumber || !registration.email">Save</button>
+      </div>
+    </form>
+    </div>
+    <div class="registration-grid">
+      <div class="registration-row" *ngFor="let registration of registrations">
+        <div (click)="populateForm(registration)" class="registration-row-details">
+          <span>firstName: {{ registration.firstName }}</span>
+          <span>lastName: {{ registration.lastName }}</span>
+          <span>email: {{ registration.email }}</span>
+          <span>businessAddress: {{ registration.businessAddress }}</span>
+          <span>telephoneNumber: {{ registration.telephoneNumber }}</span>
+          <span>npiNumber: {{ registration.npiNumber }}</span>
+        </div>
+        <div class="registration-row-action">
+          <a (click)="deleteRegistration(registration.id)"><i class="fa-solid fa-trash-can"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
